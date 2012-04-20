@@ -1,0 +1,12 @@
+[general]
+# The location of the file dump
+dump_path = /the/filesystem/path/to/your/data/ 
+# Name of tarball
+tarball_name = data.tar.gz 
+# We only want newish files. The number of seconds to go back 
+timepoint = 172800
+#Our AWS keys 
+aws_key = yourawskeyhere
+aws_secret_key = yourawssecretkeyhere 
+#Our S3 bucket name
+bucket_name = thenameofyours3bucket
