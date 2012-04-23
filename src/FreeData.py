@@ -1,5 +1,6 @@
 import os, sys, time, re, pymarc, tarfile, hashlib, json
 from stat import *
+from datetime import date
 from boto.s3.connection import S3Connection
 from boto.s3.key import Key
 from boto.s3.bucket import Bucket
@@ -66,12 +67,17 @@ class FreeData:
     def package_stats(self):
         """We've been gathering stats in different methods. Package them and
            write them to disk here"""
+
+        today = date.today()
+
         stats_message = {'record_count': self.record_count,
                          'total_files': self.file_count,
                          'size_tarball': self.tarball_size,
-                         'tarball_md5': self.md5_digest}
+                         'tarball_md5': self.md5_digest,
+                         'tarball_created': today.isoformat(),
+                         'tarball_format': 'application/x-gzip'}
 
-        stats_file = open('stats.json', 'w')
+        stats_file = open( self.config.get('general', 'dump_path') + 'stats.json', 'w')
         stats_file.writelines(json.dumps(stats_message))
         stats_file.close()
 
