@@ -96,4 +96,4 @@ class FreeData:
         tarball_key.key = 'stats.json'
         tarball_key.set_contents_from_filename(self.config.get('general', 'dump_path') + 'stats.json')
         # uncomment the following to make the bucket publicly downloadable
-        #bucket.set_acl('public-read', key.key)
+        bucket.set_acl('public-read', key.key)
