@@ -7,10 +7,12 @@ here. Setup the config and call the methods in FreeData
 
 from FreeData import FreeData
 from ConfigParser import SafeConfigParser
+from os import path
 
 # Load our config
 config = SafeConfigParser()
-config.read('../etc/config.ini')
+path_to_config = path.join(path.dirname(path.dirname(path.abspath(__file__))), 'etc/config.ini')
+config.read(path_to_config)
 
 # Get one of our heavy-lifting objects
 free_data = FreeData(config)
